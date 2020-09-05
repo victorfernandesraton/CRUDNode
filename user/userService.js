@@ -88,7 +88,7 @@ const updateOne = async ({ id, user }) => {
             const updateRecord = await client
                 .db("api")
                 .collection("user")
-                .updateOne({_id: id},{$set: user},{upsert: true });
+                .updateOne({_id: mongodb.ObjectID(id)},{$set: user},{upsert: true });
             return updateRecord;
         } catch(error) {
             throw new Error(error);
@@ -100,9 +100,42 @@ const updateOne = async ({ id, user }) => {
     }
 };
 
+const deleteOne = async ({id}) => {
+    if (!id) {
+        throw new Error("id is requuired");
+    }
+    try {
+        findRecord = await findOne({id});
+    } catch (error) {
+        throw new Error(error);
+    }
+
+    if (!findRecord.length) {
+        throw new Error("user not found");
+    }
+
+    try {
+        const client = await conection();
+        try {
+            const deleteRecord = await client
+                .db("api")
+                .collection("user")
+                .deleteOne({_id: mongodb.ObjectID(id)});
+            return deleteRecord;
+        } catch(error) {
+            throw new Error(error);
+        } finally {
+            client.close()
+        }
+    } catch(error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     index,
     store,
     findOne,
     updateOne,
+    deleteOne
 };

@@ -11,6 +11,30 @@ router.get("/", async (req, res, send) => {
     }
 });
 
+router.get('/create', (req, res, send) => {
+    res.render('create/user');
+})
+router.get('/delete/:id', async (req, res, send) => {
+    const { id } = req.params;
+    if (!id) {
+        res.send(404, {
+            error: "id is required",
+        });
+    }
+    try {
+        const data = await UserService.deleteOne({ id });
+        res.redirect("/user");
+    } catch (error) {
+        if (error.message.includes("user not found")) {
+            res.status(404).json({
+                data: "not found",
+            });
+        } else {
+            send(error);
+        }
+    }
+})
+
 router.get("/edit/:id", async (req, res, send) => {
     const { id } = req.params;
     if (!id) {

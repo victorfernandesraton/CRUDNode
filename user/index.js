@@ -1,5 +1,5 @@
-const Service = require('./user.service');
-const Router = require('./user.route');
+const Service = require('./userService');
+const Router = require('./userRoute');
 module.exports = {
     Service,
     Router

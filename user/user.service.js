@@ -1,17 +1,4 @@
-const mongodb = require("mongodb");
-const config = require("../database/mongodb.config");
-const uri = `${config.uri}${config.host}:${config.port}`;
-
-const conection = async () => {
-    try {
-        const client = await mongodb.MongoClient.connect(uri, {
-            useNewUrlParser: true,
-        });
-        return client
-    } catch (error) {
-        throw error;
-    }
-};
+const conection = require("../database/mongodb.config");
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     const client = await conection();

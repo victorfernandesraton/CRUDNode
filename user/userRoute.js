@@ -11,10 +11,11 @@ router.get("/", async (req, res, send) => {
     }
 });
 
-router.get('/create', (req, res, send) => {
-    res.render('create/user');
-})
-router.get('/delete/:id', async (req, res, send) => {
+router.get("/create", (req, res, send) => {
+    res.render("create/user");
+});
+
+router.get("/delete/:id", async (req, res, send) => {
     const { id } = req.params;
     if (!id) {
         res.send(404, {
@@ -33,7 +34,7 @@ router.get('/delete/:id', async (req, res, send) => {
             send(error);
         }
     }
-})
+});
 
 router.get("/edit/:id", async (req, res, send) => {
     const { id } = req.params;

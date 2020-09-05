@@ -1,15 +1,15 @@
-const mongodb = require('mongodb');
+const mongodb = require("mongodb");
 const conection = require("../database/mongodb.config");
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     const client = await conection();
     if (filter._id) {
-        filter._id = mongodb.ObjectID(filter._id)
+        filter._id = mongodb.ObjectID(filter._id);
     }
     try {
         const collection = client.db("api").collection("user");
         const data = await collection
-            .find({...filter})
+            .find({ ...filter })
             .skip(offset)
             .limit(limit)
             .toArray();
@@ -26,7 +26,6 @@ const store = async ({ user = null }) => {
         throw new Error("user is required");
     }
     try {
-        
         const client = await conection();
         try {
             const collection = client.db("api").collection("user");
@@ -39,7 +38,7 @@ const store = async ({ user = null }) => {
             client.close();
         }
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 };
 
@@ -59,8 +58,6 @@ const findOne = async ({ id }) => {
     } catch (error) {
         throw new Error(error);
     }
-
-
 };
 
 const updateOne = async ({ id, user }) => {
@@ -73,7 +70,7 @@ const updateOne = async ({ id, user }) => {
     let findRecord;
 
     try {
-        findRecord = await findOne({id});
+        findRecord = await findOne({ id });
     } catch (error) {
         throw new Error(error);
     }
@@ -88,24 +85,28 @@ const updateOne = async ({ id, user }) => {
             const updateRecord = await client
                 .db("api")
                 .collection("user")
-                .updateOne({_id: mongodb.ObjectID(id)},{$set: user},{upsert: true });
+                .updateOne(
+                    { _id: mongodb.ObjectID(id) },
+                    { $set: user },
+                    { upsert: true }
+                );
             return updateRecord;
-        } catch(error) {
+        } catch (error) {
             throw new Error(error);
         } finally {
-            client.close()
+            client.close();
         }
-    } catch(error) {
+    } catch (error) {
         throw new Error(error);
     }
 };
 
-const deleteOne = async ({id}) => {
+const deleteOne = async ({ id }) => {
     if (!id) {
         throw new Error("id is requuired");
     }
     try {
-        findRecord = await findOne({id});
+        findRecord = await findOne({ id });
     } catch (error) {
         throw new Error(error);
     }
@@ -120,22 +121,22 @@ const deleteOne = async ({id}) => {
             const deleteRecord = await client
                 .db("api")
                 .collection("user")
-                .deleteOne({_id: mongodb.ObjectID(id)});
+                .deleteOne({ _id: mongodb.ObjectID(id) });
             return deleteRecord;
-        } catch(error) {
+        } catch (error) {
             throw new Error(error);
         } finally {
-            client.close()
+            client.close();
         }
-    } catch(error) {
+    } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 module.exports = {
     index,
     store,
     findOne,
     updateOne,
-    deleteOne
+    deleteOne,
 };

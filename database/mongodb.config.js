@@ -1,5 +1,5 @@
-const mongodb = require('mongodb');
-const {db} = require('../config/env');
+const mongodb = require("mongodb");
+const { db } = require("../config/env");
 
 const conection = async () => {
     try {
@@ -7,10 +7,10 @@ const conection = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        return client
+        return client;
     } catch (error) {
         throw error;
     }
 };
 
-module.exports = conection
+module.exports = conection;

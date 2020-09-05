@@ -1,5 +1,81 @@
-const mongodb = require("mongodb");
 const conection = require("../database/mongodb.config");
+const mongodb = require("mongodb");
+
+const validator = require('validator');
+const {isDate, isAfter} =require('date-fns');
+
+const {Cep, CepExtractor, Cpf, Name, Phone} = require('../validation/')
+
+const validate = ({mail, firstname, lastname, cpf, birth, gender, cep, status, phone}) => {
+    if (!mail) {
+        return new Error('mail is required');
+    }
+
+    if (!validator.default.isEmail(mail)) {
+        return new Error(`mail not valid ${mail}`);
+    }
+
+    if (!cpf) {
+        return new Error(`cpf is required ${mail}`);
+    }
+
+    if (!Cpf(cpf)) {
+        return new Error(`cpf not valid ${cpf}`);
+    }
+
+    if (!firstname) {
+        return new Error(`name is required ${mail}`);
+    }
+
+    if (!Name(firstname)) {
+        return new Error(`name not valid ${firstname}`);
+    }
+    
+    if (!lastname) {
+        return new Error(`lastname is required ${lastname}`);
+    }
+
+    if (!Name(lastname)) {
+        return new Error(`lastname not valid ${lastname}`);
+    }
+
+    if(!isDate(new Date(birth))) {
+        return new Error(`birth(date) is required ${birth}`);
+    }
+
+    if (isAfter(new Date(birth), new Date(Date.now()))) {
+        return new Error(`birth(date) is after than today ${birth}`);
+    }
+
+    if (!cep) {
+        return new Error('cep is required');
+    }
+
+    if (!Cep(cep)) {
+        return new Error('cep is not valid');
+    }
+
+    if (!gender) {
+        return new Error('gender is required');
+    }
+
+    if (gender != 'w' && gender != 'm') {
+        return new Error(`gender is not valid ${gender}`);
+    }
+
+    if(typeof(status) != "boolean") {
+        return new Error('status not valid')
+    }
+
+    if (!phone) {
+        return new Error('phone is request')
+    }
+
+    if (!Phone(phone)) {
+        return new Error('phone not valid')
+    }
+}
+
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     const client = await conection();
@@ -139,4 +215,5 @@ module.exports = {
     findOne,
     updateOne,
     deleteOne,
+    validate
 };

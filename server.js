@@ -13,7 +13,7 @@ client.connect(
         useUnifiedTopology: true,
     },
     (err, database) => {
-        if (err) throw err;
+        if (err) throw new Error(err);
         console.log(`databse has connected ${db.uri}`);
         database.close();
     }

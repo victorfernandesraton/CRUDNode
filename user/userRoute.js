@@ -17,7 +17,7 @@ router.get("/create", (req, res, send) => {
 router.get("/delete/:id", async (req, res, send) => {
     const { id } = req.params;
     if (!id) {
-        res.send(404, {
+        send(404, {
             error: "id is required",
         });
     }
@@ -38,7 +38,7 @@ router.get("/delete/:id", async (req, res, send) => {
 router.get("/edit/:id", async (req, res, send) => {
     const { id } = req.params;
     if (!id) {
-        res.send(404, {
+        send(404, {
             error: "id is required",
         });
     }
@@ -59,7 +59,7 @@ router.get("/edit/:id", async (req, res, send) => {
 router.post("/:id", async (req, res, send) => {
     const { id } = req.params;
     if (!id) {
-        res.send(404, {
+        send(404, {
             error: "id is required",
         });
     }
@@ -81,7 +81,7 @@ router.post("/", async (req, res, send) => {
         const data = await UserService.index({});
         res.render("show/user", { data });
     } catch (error) {
-        res.send(error);
+        send(error);
     }
 });
 

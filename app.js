@@ -14,13 +14,17 @@ app.get("/", function (req, res) {
     res.render("index");
 });
 
-app.use((err, req,res,send) => {
-    if (!err.statusCode) {
-        err.statusCode = 500
-    }
-    res.status(500)
-    res.render('error', {errors: err})
+app.get('*', (req,res,send) => {
+    const err = new Error(`${req.url} Not found`)
+    err.status = 404;
+    send(err)
 })
 
+app.use((err, req, res, send) => {
+    res.locals.message = err.message;
+    res.locals.status = err.status || 500;
+    res.status(err.status || 500);
+    res.render('error/');
+})  
 
 module.exports = app;

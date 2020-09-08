@@ -5,7 +5,7 @@ const mongodb = require("mongodb");
 const { db, server } = require("./config/env");
 
 const client = mongodb.MongoClient;
-console.log(db.uri)
+
 client.connect(
     db.uri,
     {

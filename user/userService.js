@@ -17,21 +17,21 @@ const validate = ({
     status,
     phone,
 }) => {
-    if (!mail) {
-        return new Error("mail is required");
-    }
+    // if (!mail) {
+    //     return new Error("mail is required");
+    // }
 
-    if (!validator.default.isEmail(mail)) {
-        return new Error(`mail not valid ${mail}`);
-    }
+    // if (!validator.default.isEmail(mail)) {
+    //     return new Error(`mail not valid ${mail}`);
+    // }
 
-    if (!cpf) {
-        return new Error(`cpf is required ${mail}`);
-    }
+    // if (!cpf) {
+    //     return new Error(`cpf is required ${mail}`);
+    // }
 
-    if (!Cpf(cpf)) {
-        return new Error(`cpf not valid ${cpf}`);
-    }
+    // if (!Cpf(cpf)) {
+    //     return new Error(`cpf not valid ${cpf}`);
+    // }
 
     if (!firstname) {
         return new Error(`name is required ${mail}`);
@@ -49,41 +49,41 @@ const validate = ({
         return new Error(`lastname not valid ${lastname}`);
     }
 
-    if (!isDate(new Date(birth))) {
-        return new Error(`birth(date) is required ${birth}`);
-    }
+    // if (!isDate(new Date(birth))) {
+    //     return new Error(`birth(date) is required ${birth}`);
+    // }
 
-    if (isAfter(new Date(birth), new Date(Date.now()))) {
-        return new Error(`birth(date) is after than today ${birth}`);
-    }
+    // if (isAfter(new Date(birth), new Date(Date.now()))) {
+    //     return new Error(`birth(date) is after than today ${birth}`);
+    // }
 
-    if (!cep) {
-        return new Error("cep is required");
-    }
+    // if (!cep) {
+    //     return new Error("cep is required");
+    // }
 
-    if (!Cep(cep)) {
-        return new Error("cep is not valid");
-    }
+    // if (!Cep(cep)) {
+    //     return new Error("cep is not valid");
+    // }
 
-    if (!gender) {
-        return new Error("gender is required");
-    }
+    // if (!gender) {
+    //     return new Error("gender is required");
+    // }
 
-    if (gender != "w" && gender != "m") {
-        return new Error(`gender is not valid ${gender}`);
-    }
+    // if (gender != "w" && gender != "m") {
+    //     return new Error(`gender is not valid ${gender}`);
+    // }
 
-    if (typeof status != "boolean") {
-        return new Error("status not valid");
-    }
+    // if (typeof status != "boolean") {
+    //     return new Error("status not valid");
+    // }
 
-    if (!phone) {
-        return new Error("phone is request");
-    }
+    // if (!phone) {
+    //     return new Error("phone is request");
+    // }
 
-    if (!Phone(phone)) {
-        return new Error("phone not valid");
-    }
+    // if (!Phone(phone)) {
+    //     return new Error("phone not valid");
+    // }
 };
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {

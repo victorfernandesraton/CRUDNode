@@ -25,13 +25,13 @@ const validate = ({
     //     return new Error(`mail not valid ${mail}`);
     // }
 
-    // if (!cpf) {
-    //     return new Error(`cpf is required ${mail}`);
-    // }
+    if (!cpf) {
+        return new Error(`cpf is required ${mail}`);
+    }
 
-    // if (!Cpf(cpf)) {
-    //     return new Error(`cpf not valid ${cpf}`);
-    // }
+    if (!Cpf(cpf)) {
+        return new Error(`cpf not valid ${cpf}`);
+    }
 
     if (!firstname) {
         return new Error(`name is required ${mail}`);

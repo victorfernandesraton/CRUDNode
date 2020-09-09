@@ -9,7 +9,8 @@
         <% data.forEach(function(details) { %>
         <form action="/user/<%= details._id %>" method="POST">
             <input type="text" value="<%= details.firstname %>" name="name" />
-            <input type="text" value="<%= details.lastname %>" name="surname" />
+            <input type="text" value="<%= details.lastname %>" name="lastname" />
+            <input type="text" value="<%= details.cpf %>" name="cpf" />
             <br />
             <button><a href="/user">Todos</a></button>
             <button type="submit">Editar</button>

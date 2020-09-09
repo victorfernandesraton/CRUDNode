@@ -69,7 +69,6 @@ router.post("/:id", async (req, res, send) => {
             user: { ...req.body },
         });
         res.redirect(`/user?u=${id}`);
-        // const data = await UserService.index({});
     } catch (error) {
         send(error);
     }

@@ -12,6 +12,7 @@
                     <td>ID</td>
                     <td>Nome</td>
                     <td>Sobrenome</td>
+                    <td>CPF</td>
                     <td>Ação</td>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                     <td><%= details._id %></td>
                     <td><%= details.firstname %></td>
                     <td><%= details.lastname %></td>
+                    <td><%= details.cpf %></td>
                     <td>
                         <a href="/user/edit/<%= details._id %>">Editar</a> -
                         <a href="/user/delete/<%= details._id %>">Deletar</a>

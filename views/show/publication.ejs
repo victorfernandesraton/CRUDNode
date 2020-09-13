@@ -15,6 +15,7 @@
                     <td>Tipo</td>
                     <td>Autor</td>
                     <td>Data de criação</td>
+                    <td>Tags</td>
                 </tr>
             </thead>
             <tbody>
@@ -23,9 +24,12 @@
                     <td><%= details._id %></td>
                     <td><%= details.name %></td>
                     <td><%= details.description %></td>
-                    <td><%= details.type %></td>
+                    <% const typeOptions = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ].find(el => el.value == details.type) %>
+
+                    <td><%= typeOptions.label || "Não defiido" %></td>
                     <td><%= details.autor %></td>
                     <td><%= details.createdAt %></td>
+                    <td><%= details.tag.join(' ') %></td>
                     <td>
                         <a href="/pub/edit/<%= details._id %>">Editar</a> -
                         <a href="/pub/delete/<%= details._id %>">Deletar</a>

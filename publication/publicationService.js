@@ -59,7 +59,7 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     }
 };
 
-const tagSplit = (el) => el.split('#').trim();
+const tagSplit = (el) => el.toString().trim().split(' ');
 
 const store = async ({ publication = null }) => {
     if (!publication) {
@@ -74,7 +74,7 @@ const store = async ({ publication = null }) => {
 
     try {
         if(publication.tag) {
-            publication.tag = tagSplit(tag);
+            publication.tag = tagSplit(publication.tag)
         }
         const client = await conection();
         try {

@@ -13,6 +13,17 @@
         <input type="text" placeholder="Descrição" value="<%= details.description %>" name="description">
         <input type="text" placeholder="Autor" name="autor" value="<%= details.autor %>" required>
         <input type="date" placeholder="Data de criação" name="createAt" value="<%= details.createdAt %>" required>
+        <label>Tipo</label>
+        <select name="type">
+        <%
+            const options = [ {value: "tcc", label: "TCC"}, {value: "article", label: "Artigo"} ];
+            for (const option of options) {
+
+                let selected = option.value == details.type ? "selected" : "";
+                %><option value="<%=option.value %>" <%=selected %>><%= option.label %></option><%
+            }
+        %>
+        </select>
         <!-- <label>Tipo</label>
         <select name="type" required>
             <option value="article" selected>Artigo</option>

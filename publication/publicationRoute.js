@@ -23,7 +23,7 @@ router.get("/delete/:id", async (req, res, send) => {
     }
     try {
         const data = await PublicationService.deleteOne({ id });
-        res.redirect("/publication");
+        res.redirect("/pub");
     } catch (error) {
         if (error.message.includes("publication not found")) {
             res.status(404).json({
@@ -68,7 +68,7 @@ router.post("/:id", async (req, res, send) => {
             id,
             publication: { ...req.body },
         });
-        res.redirect(`/publication?u=${id}`);
+        res.redirect(`/pub?u=${id}`);
     } catch (error) {
         send(error);
     }

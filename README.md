@@ -7,7 +7,7 @@ Para que a aplicação funcione corrretamente , é preciso configurar as variáv
 ```bash
 NODE_ENV=production
 
-DATABASE_DOMAIN=dominio
+DATABASE_DOMAIN=dominioz
 DATABASE_HOST=endereço de host
 DATABASE_PORT=porta do mongodb
 

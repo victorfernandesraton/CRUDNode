@@ -7,34 +7,38 @@ const { Name } = require("../validation");
 const validate = ({ name, description, autor, tag, createAt, type }) => {
     if (!name) return new Error("name is required");
     if (!autor) return new Error("autor is required");
-    if (!tag || !tag.length) return new Error("tag is required");
     if (!type) return new Error("type is required");
-
+    
     if (!Name(name)) return new Error(`name is not valid ${name}`);
     if (description) {
         if (!Name(description))
-            return new Error(`description is not valid ${description}`);
+        return new Error(`description is not valid ${description}`);
     }
-
+    
     if (createAt) {
         if (
             !isDate(new Date(createAt)) ||
             isAfter(new Date(createAt), Date.now())
-        ) {
-            return new Error(`createAt is not valid ${createAt}`);
+            ) {
+                return new Error(`createAt is not valid ${createAt}`);
+            }
         }
-    }
-
-    if (!Name(type)) return new Error(`type is not valid ${type}`);
-
-    for (const tags of tag) {
-        if (typeof tags != "string") {
-            return new Error(`tag is not valid ${tags}`);
+        
+        if (!Name(type)) return new Error(`type is not valid ${type}`);
+        
+        if (tag && tag.length) {
+            for (const tags of tag) {
+                if (typeof tags != "string") {
+                return new Error(`tag is not valid ${tags}`);
+            }
         }
     }
 };
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {
+    if (filter._id) {
+        filter._id = mongodb.ObjectID(filter._id);
+    }
     try {
         const client = await conection();
         try {
@@ -55,6 +59,8 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     }
 };
 
+const tagSplit = (el) => el.split('#').trim();
+
 const store = async ({ publication = null }) => {
     if (!publication) {
         throw new Error('publication is required');
@@ -67,6 +73,9 @@ const store = async ({ publication = null }) => {
     }
 
     try {
+        if(publication.tag) {
+            publication.tag = tagSplit(tag);
+        }
         const client = await conection();
         try {
             const collection = client.db("api").collection("publication");

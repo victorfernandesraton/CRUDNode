@@ -13,7 +13,7 @@
         <input type="text" placeholder="Nome" value="<%= details.name %>" name="name" />
         <input type="text" placeholder="Descrição" value="<%= details.description %>" name="description" />
         <input type="text" placeholder="Autor" name="autor" value="<%= details.autor %>" required />
-        <input type="date" placeholder="Data de criação" name="createAt" value="<%= Date(details.createdAt) %>" required />
+        <input type="date" placeholder="Data de criação" name="createAt" value="<%= details.createAt %>" required />
         <label>Tipo</label>
         <select name="type">
             <% const options = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ]; %>

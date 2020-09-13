@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My CRUD in NodeJS</title>
+</head>
+<body>
+
+    <h2>Registrar<h2>
+    <form action="/pub" method="POST">
+        <input type="text" placeholder="Nome" name="name" required>
+        <input type="text" placeholder="Descrição" name="description">
+        <input type="text" placeholder="Autor" name="autor" required>
+        <input type="date" placeholder="Data de criação" name="createAt" required>
+        <label>Tipo</label>
+        <select name="type" required>
+            <option value="article" selected>Artigo</option>
+            <option value="tcc">TCC</option>
+        </select>
+        <input type="text" placeholder="Tags (use o prdfixo # e um espaçamento)" mame="tags">
+        <button type="submit">Submit</button>
+    </form> 
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>My CRUD in NodeJS</title>
+    </head>
+    <body>
+        <h2>Registros</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Tipo</td>
+                    <td>Autor</td>
+                    <td>Data de criação</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(details) { %>
+                <tr>
+                    <td><%= details._id %></td>
+                    <td><%= details.name %></td>
+                    <td><%= details.description %></td>
+                    <td><%= details.type %></td>
+                    <td><%= details.autor %></td>
+                    <td><%= details.createdAt %></td>
+                    <td>
+                        <a href="/pub/edit/<%= details._id %>">Editar</a> -
+                        <a href="/pub/delete/<%= details._id %>">Deletar</a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <button><a href="/pub/create">Novo</a></button>
+    </body>
+</html>

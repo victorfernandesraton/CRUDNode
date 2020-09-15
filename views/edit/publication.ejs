@@ -3,9 +3,13 @@
     <h2>Editar Registro</h2>
     <% data.forEach(function(details) { %>
     <form action="/pub/<%= details._id %>" method="POST">
+        <label>Nome</label>
         <input type="text" placeholder="Nome" value="<%= details.name %>" name="name" />
+        <label>Descrição</label>
         <input type="text" placeholder="Descrição" value="<%= details.description %>" name="description" />
+        <label>Autor</label>
         <input type="text" placeholder="Autor" name="autor" value="<%= details.autor %>" required />
+        <label>Data de criação</label>
         <input type="date" placeholder="Data de criação" name="createAt" value="<%= details.createAt %>" required />
         <label>Tipo</label>
         <select name="type">
@@ -15,6 +19,7 @@
                 <option value='<%= option.value %>'><%= option.label %></option>
             <% } %>
         </select> 
+        <label>Tags</label>
         <input type="textarea" placeholder="Tags (use o prdfixo # e um espaçamento)" mame="tag"  value=<%= details.tag.join(' ') %> />
         <br />
         <button type="submit">Editar</button>

@@ -1,17 +1,22 @@
 <%- contentFor('body') %>
 <div>
-    <h2>Registrar<h2>
+    <h2>Registrar</h2>
     <form action="/pub" method="POST">
+        <label>Nome</label>
         <input type="text" placeholder="Nome" name="name" required>
+        <label>Descrição</label>
         <input type="text" placeholder="Descrição" name="description">
+        <label>Autor</label>
         <input type="text" placeholder="Autor" name="autor" required>
+        <label>Data de criação</label>
         <input type="date" placeholder="Data de criação" name="createAt" required>
+        <label>Tags</label>
         <input type="text" placeholder="Tags" name="tag">
         <label>Tipo</label>
         <select name="type" required>
             <option value="article" selected>Artigo</option>
             <option value="tcc">TCC</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Enviar</button>
     </form> 
 </div>

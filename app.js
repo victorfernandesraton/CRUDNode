@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
+const expressLayiut = require('express-ejs-layouts');
 
 const routes = require("./routes");
 
 app.use(bodyparser.urlencoded({ extended: true }));
-
 app.set("view engine", "ejs");
+app.use(expressLayiut);
 
 app.use("/", routes);
 
@@ -25,6 +26,6 @@ app.use((err, req, res, send) => {
     res.locals.status = err.status || 500;
     res.status(err.status || 500);
     res.render('error/');
-})  
+})
 
 module.exports = app;

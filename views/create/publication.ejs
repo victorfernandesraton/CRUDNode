@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My CRUD in NodeJS</title>
-</head>
-<body>
-
+<%- contentFor('body') %>
+<div>
     <h2>Registrar<h2>
     <form action="/pub" method="POST">
         <input type="text" placeholder="Nome" name="name" required>
@@ -20,6 +14,4 @@
         </select>
         <button type="submit">Submit</button>
     </form> 
-
-</body>
-</html>
+</div>

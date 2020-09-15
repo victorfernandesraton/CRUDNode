@@ -1,28 +1,74 @@
 <%- contentFor('body') %>
-<div>
+<div class="col-md-4">
     <h2>Editar Registro</h2>
     <% data.forEach(function(details) { %>
     <form action="/pub/<%= details._id %>" method="POST">
-        <label>Nome</label>
-        <input type="text" placeholder="Nome" value="<%= details.name %>" name="name" />
-        <label>Descrição</label>
-        <input type="text" placeholder="Descrição" value="<%= details.description %>" name="description" />
-        <label>Autor</label>
-        <input type="text" placeholder="Autor" name="autor" value="<%= details.autor %>" required />
-        <label>Data de criação</label>
-        <input type="date" placeholder="Data de criação" name="createAt" value="<%= details.createAt %>" required />
-        <label>Tipo</label>
-        <select name="type">
-            <% const options = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ]; %>
-            <% for(const option of options) { %>
-                <% const selected = option.value === details.type %>
-                <option value='<%= option.value %>'><%= option.label %></option>
-            <% } %>
-        </select> 
-        <label>Tags</label>
-        <input type="textarea" placeholder="Tags (use o prdfixo # e um espaçamento)" mame="tag"  value=<%= details.tag.join(' ') %> />
-        <br />
-        <button type="submit">Editar</button>
+        <div class="mb-5">
+            <label for="name">Nome</label>
+            <input
+                required
+                type="text"
+                class="form-control"
+                name="name"
+                id="name"
+                placeholder="Nome"
+                value="<%= details.name %>"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="description">Descrição</label>
+            <textarea
+                class="form-control"
+                name="description"
+                id="description"
+                placeholder="Descrição"
+            ><%= details.description.trim() %></textarea>
+        </div>
+            <label for="autor">Autor</label>
+            <input
+                required
+                type="text"
+                class="form-control"
+                name="autor"
+                id="autor"
+                placeholder="Autor"
+                value="<%= details.autor %>"
+            />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="createAt">Data de criação</label>
+                    <input
+                        required
+                        type="date"
+                        class="form-control col"
+                        name="createAt"
+                        id="createAt"
+                        placeholder="Data de criação"
+                        value="<%= details.createAt %>"
+                    />
+                </div>
+                <div class="col-sm-6">
+                    <label for="type">Tipo</label>
+                    <select name="type" id="type" class="form-control">
+                        <% const options = [ {value: "tcc", label: "TCC"},{value:"article", label: "Artigo"} ]; %>
+                        <% for(const option of options) { %> <% const selected = option.value === details.type%>
+                            <option value="<%= option.value %>"><%= option.label %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <label for="tag">Tags</label>
+            <input 
+                type="textarea" 
+                class="form-control"
+                id="tag" 
+                mame="tag" 
+                placeholder="Tags (use o prdfixo # e um espaçamento)" 
+                value=<%= details.tag.join(' ') %> 
+            />
+            <br />
+            <button class="btn btn-primary" type="submit">Editar</button>
+        </div>
     </form>
     <% }) %>
 </div>

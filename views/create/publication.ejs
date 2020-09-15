@@ -1,22 +1,70 @@
 <%- contentFor('body') %>
 <div>
-    <h2>Registrar</h2>
-    <form action="/pub" method="POST">
-        <label>Nome</label>
-        <input type="text" placeholder="Nome" name="name" required>
-        <label>Descrição</label>
-        <input type="text" placeholder="Descrição" name="description">
-        <label>Autor</label>
-        <input type="text" placeholder="Autor" name="autor" required>
-        <label>Data de criação</label>
-        <input type="date" placeholder="Data de criação" name="createAt" required>
-        <label>Tags</label>
-        <input type="text" placeholder="Tags" name="tag">
-        <label>Tipo</label>
-        <select name="type" required>
-            <option value="article" selected>Artigo</option>
-            <option value="tcc">TCC</option>
-        </select>
-        <button type="submit">Enviar</button>
-    </form> 
+    <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%;">
+        <h2>Cadastrar publicação</h2>
+        <form action="/pub/" method="POST">
+            <div class="mb-5">
+                <label for="name">Nome</label>
+                <input
+                    required
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    placeholder="Nome"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="description">Descrição</label>
+                <textarea
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    placeholder="Descrição"
+                ></textarea>
+            </div>
+                <label for="autor">Autor</label>
+                <input
+                    required
+                    type="text"
+                    class="form-control"
+                    name="autor"
+                    id="autor"
+                    placeholder="Autor"
+                />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="createAt">Data de criação</label>
+                        <input
+                            required
+                            type="date"
+                            class="form-control col"
+                            name="createAt"
+                            id="createAt"
+                            placeholder="Data de criação"
+                        />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="type">Tipo</label>
+                        <select name="type" id="type" class="form-control">
+                            <% const options = [ {value: "tcc", label: "TCC"},{value:"article", label: "Artigo"} ]; %>
+                            <% for(const option of options) { %>
+                                <option value="<%= option.value %>"><%= option.label %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <label for="tag">Tags</label>
+                <input 
+                    type="textarea" 
+                    class="form-control"
+                    id="tag" 
+                    mame="tag" 
+                    placeholder="Tags (use o prdfixo # e um espaçamento)" 
+                />
+                <br />
+                <button class="btn btn-primary" type="submit">Editar</button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -1,38 +1,38 @@
 <%- contentFor('body') %>
 <div>
     <h2>Registros</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td>Nome</td>
-                <td>Descrição</td>
-                <td>Tipo</td>
-                <td>Autor</td>
-                <td>Data de criação</td>
-                <td>Tags</td>
-                <td>Açoões</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% data.forEach(function(details) { %>
-            <tr>
-                <td><%= details._id %></td>
-                <td><%= details.name %></td>
-                <td><%= details.description %></td>
-                <% const typeOptions = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ].find(el => el.value == details.type) %>
-
-                <td><%= typeOptions.label || "Não defiido" %></td>
-                <td><%= details.autor %></td>
-                <td><%= details.createAt %></td>
-                <td><%= details.tag.join(' ') %></td>
-                <td>
-                    <a href="/pub/edit/<%= details._id %>">Editar</a> -
-                    <a href="/pub/delete/<%= details._id %>">Deletar</a>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <button><a href="/pub/create">Novo</a></button>
+    <div class="table-responsive">
+        <table class="table table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Tipo</td>
+                    <td>Autor</td>
+                    <td>Data de criação</td>
+                    <td>Tags</td>
+                    <td>Açoões</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(details) { %>
+                <tr>
+                    <td><%= details.name %></td>
+                    <td><%= details.description %></td>
+                    <% const typeOptions = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ].find(el => el.value == details.type) %>
+    
+                    <td><%= typeOptions.label || "Não defiido" %></td>
+                    <td><%= details.autor %></td>
+                    <td><%= details.createAt %></td>
+                    <td><%= details.tag.join(' ') %></td>
+                    <td>
+                        <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a> -
+                        <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">Deletar</a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary" href="/pub/create">Novo</a>
 </div>

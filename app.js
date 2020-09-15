@@ -8,6 +8,7 @@ const routes = require("./routes");
 app.use(bodyparser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(expressLayiut);
+app.use(express.static(__dirname + '/public'));
 
 app.use("/", routes);
 
@@ -25,6 +26,7 @@ app.use((err, req, res, send) => {
     res.locals.message = err.message;
     res.locals.status = err.status || 500;
     res.status(err.status || 500);
+    console.log(err);
     res.render('error/');
 })
 

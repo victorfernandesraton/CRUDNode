@@ -3,32 +3,27 @@ const mongodb = require("mongodb");
 
 const { isDate, isAfter } = require("date-fns");
 const { Name } = require("../validation");
+const validation = require("../validation");
 
 const validate = ({ name, description, autor, tag, createAt, type }) => {
     if (!name) return new Error("name is required");
     if (!autor) return new Error("autor is required");
     if (!type) return new Error("type is required");
-    
-    if (!Name(name)) return new Error(`name is not valid ${name}`);
-    if (description) {
-        if (!Name(description))
-        return new Error(`description is not valid ${description}`);
-    }
-    
+
     if (createAt) {
         if (
             !isDate(new Date(createAt)) ||
             isAfter(new Date(createAt), Date.now())
-            ) {
-                return new Error(`createAt is not valid ${createAt}`);
-            }
+        ) {
+            return new Error(`createAt is not valid ${createAt}`);
         }
-        
-        if (!Name(type)) return new Error(`type is not valid ${type}`);
-        
-        if (tag && tag.length) {
-            for (const tags of tag) {
-                if (typeof tags != "string") {
+    }
+
+    if (!Name(type)) return new Error(`type is not valid ${type}`);
+
+    if (tag && tag.length) {
+        for (const tags of tag) {
+            if (typeof tags != "string") {
                 return new Error(`tag is not valid ${tags}`);
             }
         }
@@ -59,21 +54,22 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     }
 };
 
-const tagSplit = (el) => el.toString().trim().split(' ');
+const tagSplit = (el) => el.toString().trim().split(" ");
 
 const store = async ({ publication = null }) => {
     if (!publication) {
-        throw new Error('publication is required');
+        throw new Error("publication is required");
     }
 
     const isNotValid = validate(publication);
-    
+
+
     if (isNotValid) {
-        throw new Error(isNotValid)
+        throw new Error(isNotValid);
     }
 
     try {
-        if(publication.tag) {
+        if(publication.tag && publication.tag.length> 0) {
             publication.tag = tagSplit(publication.tag)
         }
         const client = await conection();
@@ -131,6 +127,15 @@ const updateOne = async ({ id, publication }) => {
 
     try {
         const client = await conection();
+        const isNotValid = validate(publication);
+
+        if(publication.tag && publication.tag.length> 0) {
+            publication.tag = tagSplit(publication.tag)
+        }
+
+        if (isNotValid) {
+            throw new Error(isNotValid);
+        }
         try {
             const updateRecord = await client
                 .db("api")
@@ -183,13 +188,13 @@ const deleteOne = async ({ id }) => {
     }
 };
 
-const addTag = async({id, tag}) => {
-    throw new Error('addTag is not implemented')
-}
+const addTag = async ({ id, tag }) => {
+    throw new Error("addTag is not implemented");
+};
 
-const removeTag = async({id, tag}) => {
-    throw new Error('addTag is not implemented')
-}
+const removeTag = async ({ id, tag }) => {
+    throw new Error("addTag is not implemented");
+};
 
 module.exports = {
     index,

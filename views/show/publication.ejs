@@ -24,7 +24,8 @@
                     <td><%= typeOptions.label || "Não defiido" %></td>
                     <td><%= details.autor %></td>
                     <td><%= details.createAt %></td>
-                    <td><%= details.tag.join(' ') %></td>
+                    <% const tag = details.tag || [] %>
+                    <td><%= tag.join(' ') %></td>
                     <td>
                         <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a> -
                         <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">Deletar</a>

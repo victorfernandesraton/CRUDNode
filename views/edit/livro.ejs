@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My CRUD in NodeJS</title>
+</head>
+<body>
+
+    <h2>Registrar Livro<h2>
+        <% data.forEach(function(details) { %>
+    <form action="/livro" method="POST">
+        
+        <input type="text" value="<%= details._id %>" name="id">
+        <input type="text" value="<%= details.titulo %>" name="titulo">
+        <input type="text" value="<%= details.descricao %>" name="descricao">
+        <input type="text" value="<%= details.editora %>" name="editora">
+        <input type="date" value="<%= details.data %>" name="data">
+        <input type="text" value="<%= details.assunto %>" name="assunto">
+        <br />
+        <button><a href="/livro">Todos</a></button>
+        <button type="submit">Editar</button>
+    </form> 
+    <% }) %>
+</body>
+</html>

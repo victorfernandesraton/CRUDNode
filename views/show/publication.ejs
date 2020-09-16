@@ -25,7 +25,11 @@
                     <td><%= details.autor %></td>
                     <td><%= details.createAt %></td>
                     <% const tag = details.tag || [] %>
-                    <td><%= tag.join(' ') %></td>
+                    <td>
+                        <% for(const badget of tag) {%>
+                            <span class="badge badge-secondary"><%= badget %></span>
+                        <% } %>
+                    </td>
                     <td>
                         <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a> -
                         <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">Deletar</a>

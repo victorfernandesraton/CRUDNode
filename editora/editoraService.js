@@ -1,4 +1,4 @@
-const conection = require("..database/mongodb.config");
+const conection = require("../database/mongodb.config");
 const mongodb = require("mongodb");
 
 const validator = require("validator");

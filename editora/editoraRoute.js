@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const EditoraService = require("./editoraService");
 
-router.get("/", (req, res, send) => {
+router.get("/", async (req, res, send) => {
     try {
         const data = await EditoraService.index({});
         res.render("show/editora", { data });
@@ -83,5 +83,4 @@ router.post("/", async (req,res, send) => {
         send(error);
     }
 });
-
 module.exports = router;

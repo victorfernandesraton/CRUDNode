@@ -16,22 +16,29 @@
             crossorigin="anonymous"
         />
     </head>
-    <body>
+    <body style="background-color: rgb(239, 240, 242)">
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand" href="#">Hidden brand</a>
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user">Usuário</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pub">Publicações</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #005281;">
+                <a href="#" class="navbar-brand">
+                    <img src="/logo.png" height="50" alt="" loading="lazy">
+                </a>
+                <button
+                    type="button"
+                    class="navbar-toggler"
+                    data-toggle="collapse"
+                    data-target="#navbarCollapse"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="/" class="nav-item nav-link">Home</a>
+                        <a href="/user" class="nav-item nav-link">Usuários</a>
+                        <a href="/livro" class="nav-item nav-link">Livros</a>
+                        <a href="/pub" class="nav-item nav-link">Publicações</a>
+                        <a href="/editora" class="nav-item nav-link">Editora</a>
+                    </div>
                 </div>
             </nav>
         </header>

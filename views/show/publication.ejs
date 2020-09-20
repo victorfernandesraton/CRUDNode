@@ -1,29 +1,31 @@
 <title>Blibioteca universitária - Publicações</title>
 <div>
     <h2>Publicações</h2>
-    <form method="GET" class="form-inline" action="/pub">
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="q">Buscar por</label>
-            <input name="q" class="form-control my-0 py-1 red-border" type="text" placeholder="Search"
-                aria-label="Search" />
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="f">FIltrar por</label>
-            <select name="f" class="form-control">
-                <option selected value="name">Nome</option>
-                <option value="tag">Tag</option>
-                <option value="description">Descrição</option>
-                <option value="type">Tipo</option>
-                <option value="author">Autor</option>
-            </select>
-        </div>
-        <button class="btn btn btn-primary mx-sm-3 mb-2" type="submit">
-            <i class="fas fa-search" aria-hidden="true"></i> Pesquisar
-        </button>
-        <a value="Novou" href="/pub/create" class="btn btn-primary mb-2" href="/pub/create">
-            <i class="fa fa-plus" aria-hidden="true"></i> Novo
-        </a>
-    </form>
+    <div class="shadow bg-white rounded mb-2" style="padding: 1em; display: flex; justify-content: center; vertical-align: middle;">
+        <form method="GET" class="form-inline" action="/pub">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="q">Buscar por</label>
+                <input name="q" class="form-control my-0 py-1 red-border" type="text" placeholder="Search"
+                    aria-label="Search" />
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="f">FIltrar por</label>
+                <select name="f" class="form-control">
+                    <option selected value="name">Nome</option>
+                    <option value="tag">Tag</option>
+                    <option value="description">Descrição</option>
+                    <option value="type">Tipo</option>
+                    <option value="author">Autor</option>
+                </select>
+            </div>
+            <button class="btn btn btn-primary mx-sm-3 mb-2" type="submit">
+                <i class="fas fa-search" aria-hidden="true"></i> Pesquisar
+            </button>
+            <a value="Novou" href="/pub/create" class="btn btn-primary mb-2" href="/pub/create">
+                <i class="fa fa-plus" aria-hidden="true"></i> Novo
+            </a>
+        </form>
+    </div>
 
     <div class="table-responsive xd shadow bg-white rounded">
         <table class="table table-striped">

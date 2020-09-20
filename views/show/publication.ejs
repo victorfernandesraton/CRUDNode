@@ -1,8 +1,29 @@
-<%- contentFor('body') %>
-<div class="shadow p-3 bg-white rounded">
-    <h2>Registros</h2>
-    <div class="table-responsive">
-        <table class="table table-striped ">
+<title>Blibioteca universitária - Publicações</title>
+<div>
+    <h2>Publicações</h2>
+    <form method="GET" class="form-inline" action="/pub">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="q">Buscar por</label>
+            <input name="q" class="form-control my-0 py-1 red-border" type="text" placeholder="Search"
+                aria-label="Search" />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="f">FIltrar por</label>
+            <select name="f" class="form-control">
+                <option selected value="name">Nome</option>
+                <option value="tag">Tag</option>
+                <option value="description">Descrição</option>
+                <option value="type">Tipo</option>
+                <option value="author">Autor</option>
+            </select>
+        </div>
+        <button class="btn btn btn-primary mx-sm-3 mb-2"type="submit">
+            <i class="fas fa-search" id="basic-text1"></i></button>
+        <button value="Novou" class="btn btn-primary mb-2" href="/pub/create" >Novo</button>
+    </form>
+
+    <div class="table-responsive xd shadow bg-white rounded">
+        <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <td>Nome</td>
@@ -19,19 +40,21 @@
                 <tr>
                     <td><%= details.name %></td>
                     <td><%= details.description %></td>
-                    <% const typeOptions = [ {value: "tcc", label: "TCC"}, {value:"article", label: "Artigo"} ].find(el => el.value == details.type) %>
-    
+                    <% const typeOptions = [ {value: "tcc", label: "TCC"},
+                    {value:"article", label: "Artigo"} ].find(el => el.value ==
+                    details.type) %>
+
                     <td><%= typeOptions.label || "Não defiido" %></td>
                     <td><%= details.autor %></td>
                     <td><%= details.createAt %></td>
                     <% const tag = details.tag || [] %>
-                    <td>
+                    <td class="md-3" style="width: 5%">
                         <% for(const badget of tag) {%>
-                            <span class="badge badge-secondary"><%= badget %></span>
+                        <span class="badge badge-secondary"><%= badget %></span>
                         <% } %>
                     </td>
-                    <td>
-                        <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a> -
+                    <td class="md-3">
+                        <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a>
                         <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">Deletar</a>
                     </td>
                 </tr>
@@ -39,5 +62,4 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary" href="/pub/create">Novo</a>
 </div>

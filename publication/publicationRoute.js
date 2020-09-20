@@ -3,13 +3,17 @@ const PublicationService = require("./publicationService");
 
 router.get("/", async (req, res, send) => {
     try {
-        const data = await PublicationService.index({});
+        const {q, f} = req.query;
+        let filter = {};
+        if (q && f) {
+            filter[f] = q;
+        }       
+        const data = await PublicationService.index({filter});
         res.render("show/publication", { data });
     } catch (error) {
         send(error);
     }
 });
-
 router.get("/create", (req, res, send) => {
     res.render("create/publication");
 });

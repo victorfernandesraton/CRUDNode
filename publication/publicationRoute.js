@@ -3,12 +3,22 @@ const PublicationService = require("./publicationService");
 
 router.get("/", async (req, res, send) => {
     try {
-        const {q, f} = req.query;
+        // l: limit per page
+        // o: offset
+        // q: query
+        // f: filter by (in query)
+        const {q, f, l, p} = req.query;
+        let sendData = {
+            limit: parseInt(l) || 10,
+        };
         let filter = {};
         if (q && f) {
             filter[f] = q;
-        }       
-        const data = await PublicationService.index({filter});
+        }
+        if (p) {
+            sendData.offset = (p - 1)*sendData.limit;
+        }
+        const data = await PublicationService.index({...sendData, filter});
         res.render("show/publication", { data });
     } catch (error) {
         send(error);

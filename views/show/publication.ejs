@@ -17,9 +17,12 @@
                 <option value="author">Autor</option>
             </select>
         </div>
-        <button class="btn btn btn-primary mx-sm-3 mb-2"type="submit">
-            <i class="fas fa-search" id="basic-text1"></i></button>
-        <button value="Novou" class="btn btn-primary mb-2" href="/pub/create" >Novo</button>
+        <button class="btn btn btn-primary mx-sm-3 mb-2" type="submit">
+            <i class="fas fa-search" aria-hidden="true"></i> Pesquisar
+        </button>
+        <a value="Novou" href="/pub/create" class="btn btn-primary mb-2" href="/pub/create">
+            <i class="fa fa-plus" aria-hidden="true"></i> Novo
+        </a>
     </form>
 
     <div class="table-responsive xd shadow bg-white rounded">
@@ -54,8 +57,12 @@
                         <% } %>
                     </td>
                     <td class="md-3">
-                        <a class="btn btn-info" href="/pub/edit/<%= details._id %>">Editar</a>
-                        <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">Deletar</a>
+                        <a class="btn btn-info" href="/pub/edit/<%= details._id %>">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
                 <% }) %>

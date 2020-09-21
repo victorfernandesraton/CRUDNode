@@ -66,7 +66,7 @@ router.post("/:id", async (req, res, send) => {
     try {
         const record = await LivroService.updateOne({
             id,
-            user: { ...req.body },
+            livro: { ...req.body },
         });
         res.redirect(`/livro?u=${id}`);
     } catch (error) {

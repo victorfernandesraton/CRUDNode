@@ -18,8 +18,8 @@ router.get("/", async (req, res, send) => {
         if (p) {
             sendData.offset = (p - 1)*sendData.limit;
         }
-        const data = await PublicationService.index({...sendData, filter});
-        res.render("show/publication", { data });
+        const {data, metadata} = await PublicationService.index({...sendData, filter});
+        res.render("show/publication", { data, metadata });
     } catch (error) {
         send(error);
     }

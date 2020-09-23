@@ -8,9 +8,8 @@
 
     <h2>Registrar Livro<h2>
         <% data.forEach(function(details) { %>
-    <form action="/livro" method="POST">
+    <form action="/livro/<%= details._id %>" method="POST">
         
-        <input type="text" value="<%= details._id %>" name="id">
         <input type="text" value="<%= details.titulo %>" name="titulo">
         <input type="text" value="<%= details.descricao %>" name="descricao">
         <input type="text" value="<%= details.editora %>" name="editora">

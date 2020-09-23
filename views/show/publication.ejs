@@ -27,6 +27,19 @@
         </form>
     </div>
 
+    <% const {limit, total} = metadata; %>
+    <% const currentPage = metadata.offset == 0 ? 1 : metadata.offset/limit;  %>
+    <% const totalPage = total >= limit ? Math.ceil(total/limit) : 1 %> 
+    <div style="margin-top: 2em;">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm">
+                <% for (let index = 1; index <= totalPage; index++) { %>
+                    <li class="shadow page-item <%= index == currentPage ? 'active' : '' %>"><a class="page-link" href="#"><%= index %></a></li>
+                <% } %>
+            </ul>
+        </nav> 
+    </div>
+
     <div class="table-responsive xd shadow bg-white rounded">
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -68,7 +81,7 @@
                     </td>
                 </tr>
                 <% }) %>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+                </table>
+                </div>
 </div>

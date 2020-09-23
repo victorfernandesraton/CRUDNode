@@ -126,7 +126,7 @@ const updateOne = async ({ id, livro }) => {
                 .collection("livro")
                 .updateOne(
                     { _id: mongodb.ObjectID(id) },
-                    { $set: user },
+                    { $set: livro },
                     { upsert: true }
                 );
             return updateRecord;

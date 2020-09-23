@@ -43,7 +43,8 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
                 .skip(offset)
                 .limit(limit)
                 .toArray();
-            return data;
+            const total = await collection.estimatedDocumentCount();
+            return {data, metadata: {limit, offset, total}};
         } catch (error) {
             throw new Error(error);
         } finally {

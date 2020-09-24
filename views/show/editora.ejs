@@ -1,12 +1,31 @@
 <%- contentFor('body') %>
 <div>
-    <table>
+    <h2>Registrar</h2>
+    <table border="1">
         <thead>
-            <th>Razão Social</th>
-            <th>Nome</th>
-            <th>cnpj</th>
-            <th>email</th>
-            <th>telefone de contato</th>
+            <tr>
+                <td>Razão Social</td>
+                <td>CNPJ</td>
+                <td>Nome</td>
+                <td>Contato</td>
+                <td>Ação</td>
+            </tr>
         </thead>
+        <tbody>
+            <% data.forEach(function(details) { %>
+            <tr>
+                <td><%= details._id %></td>
+                <td><%= details.razao %></td>
+                <td><%= details.nome %></td>
+                <td><%= details.cnpj %></td>
+                <td><%= details.contato %></td>
+                <td>
+                    <a href="/editora/edit/<%= details._id %>">Editar</a> -
+                    <a href="/editora/delete/<%= details._id %>">Deletar</a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
     </table>
+    <button><a href="/editora/create">Novo</a></button>
 </div>

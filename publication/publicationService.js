@@ -3,7 +3,6 @@ const mongodb = require("mongodb");
 
 const { isDate, isAfter } = require("date-fns");
 const { Name } = require("../validation");
-const validation = require("../validation");
 
 const validate = ({ name, description, autor, tag, createAt, type }) => {
     if (!name) return new Error("name is required");
@@ -34,6 +33,7 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
     if (filter._id) {
         filter._id = mongodb.ObjectID(filter._id);
     }
+
     try {
         const client = await conection();
         try {
@@ -43,7 +43,7 @@ const index = async ({ limit = 10, offset = 0, filter = {} }) => {
                 .skip(offset)
                 .limit(limit)
                 .toArray();
-            const total = await collection.estimatedDocumentCount();
+            const total = await collection.countDocuments(filter);
             return {data, metadata: {limit, offset, total}};
         } catch (error) {
             throw new Error(error);
@@ -64,7 +64,6 @@ const store = async ({ publication = null }) => {
 
     const isNotValid = validate(publication);
 
-
     if (isNotValid) {
         throw new Error(isNotValid);
     }
@@ -77,8 +76,8 @@ const store = async ({ publication = null }) => {
         try {
             const collection = client.db("api").collection("publication");
             const record = await collection.insertOne(publication);
-            const data = await index({});
-            return data;
+            const {data, metadata} = await index({});
+            return {data, metadata};
         } catch (error) {
             throw new Error(error);
         } finally {
@@ -95,13 +94,13 @@ const findOne = async ({ id }) => {
     }
 
     try {
-        const findRecord = await index({
+        const {data, metadata} = await index({
             filter: { _id: id },
         });
-        if (!findRecord.length) {
+        if (!data.length) {
             throw new Error("publication not found");
         }
-        return findRecord;
+        return {data, metadata};
     } catch (error) {
         throw new Error(error);
     }
@@ -162,39 +161,31 @@ const deleteOne = async ({ id }) => {
         throw new Error("id is requuired");
     }
     try {
-        findRecord = await findOne({ id });
-    } catch (error) {
-        throw new Error(error);
-    }
-
-    if (!findRecord.length) {
-        throw new Error("publication not found");
-    }
-
-    try {
-        const client = await conection();
+        const {data} = await findOne({ id });
+        if (!data.length) {
+            throw new Error("publication not found");
+        }
+    
         try {
-            const deleteRecord = await client
-                .db("api")
-                .collection("publication")
-                .deleteOne({ _id: mongodb.ObjectID(id) });
-            return deleteRecord;
+            const client = await conection();
+            try {
+                const deleteRecord = await client
+                    .db("api")
+                    .collection("publication")
+                    .deleteOne({ _id: mongodb.ObjectID(id) });
+                return deleteRecord;
+            } catch (error) {
+                throw new Error(error);
+            } finally {
+                client.close();
+            }
         } catch (error) {
             throw new Error(error);
-        } finally {
-            client.close();
         }
     } catch (error) {
         throw new Error(error);
     }
-};
 
-const addTag = async ({ id, tag }) => {
-    throw new Error("addTag is not implemented");
-};
-
-const removeTag = async ({ id, tag }) => {
-    throw new Error("addTag is not implemented");
 };
 
 module.exports = {

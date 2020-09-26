@@ -8,6 +8,7 @@ router.get("/", async (req, res, send) => {
         // q: query
         // f: filter by (in query)
         const {q, f, l, p} = req.query;
+        const {url} = req;
         let sendData = {
             limit: parseInt(l) || 10,
         };
@@ -19,7 +20,7 @@ router.get("/", async (req, res, send) => {
             sendData.offset = (p - 1)*sendData.limit;
         }
         const {data, metadata} = await PublicationService.index({...sendData, filter});
-        res.render("show/publication", { data, metadata });
+        res.render("show/publication", { data, metadata: {...metadata, url} });
     } catch (error) {
         send(error);
     }
@@ -57,7 +58,7 @@ router.get("/edit/:id", async (req, res, send) => {
         });
     }
     try {
-        const data = await PublicationService.findOne({ id });
+        const {data} = await PublicationService.findOne({ id });
         res.render("edit/publication", { data });
     } catch (error) {
         if (error.message.includes("publication not found")) {
@@ -91,8 +92,8 @@ router.post("/:id", async (req, res, send) => {
 router.post("/", async (req, res, send) => {
     try {
         const record = await PublicationService.store({ publication: { ...req.body } });
-        const data = await PublicationService.index({});
-        res.render("show/publication", { data });
+        const {data, metadata} = await PublicationService.index({});
+        res.render("show/publication", { data, metadata });
     } catch (error) {
         send(error);
     }

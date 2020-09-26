@@ -1,31 +1,62 @@
-<%- contentFor('body') %>
+<title>Blibioteca universitária - Editora</title>
 <div>
-    <h2>Registrar</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Razão Social</td>
-                <td>CNPJ</td>
-                <td>Nome</td>
-                <td>Contato</td>
-                <td>Ação</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% data.forEach(function(details) { %>
-            <tr>
-                <td><%= details._id %></td>
-                <td><%= details.razao %></td>
-                <td><%= details.nome %></td>
-                <td><%= details.cnpj %></td>
-                <td><%= details.contato %></td>
-                <td>
-                    <a href="/editora/edit/<%= details._id %>">Editar</a> -
-                    <a href="/editora/delete/<%= details._id %>">Deletar</a>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <button><a href="/editora/create">Novo</a></button>
+    <h2>Editora</h2>
+    <div class="shadow bg-white rounded mb-2" style="padding: 1em; display: flex; justify-content: center; vertical-align: middle;">
+        <form method="GET" class="form-inline" action="./editora/">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="q">Buscar por</label>
+                <input name="q" class="form-control my-0 py-1 red-border" type="text" placeholder="Search"
+                    aria-label="Search" />
+            </div>
+            <div class="form-group mb-2">
+                <label for="f">FIltrar por</label>
+                <select name="f" class="form-control">
+                    <option selected value="name">Nome</option>
+                    <option value="tag">Tag</option>
+                    <option value="description">Razão Social</option>
+                    <option value="type">Contato</option>
+                </select>
+            </div>
+            <div class="form-group mx-sm-3">
+                <button class="btn btn btn-primary mx-sm-3 mb-2" type="submit">
+                    <i class="fas fa-search" aria-hidden="true"></i> Pesquisar
+                </button>
+                <a value="Novou" href="/editora/create" class="btn btn-primary mb-2" href="/editora/create">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Novo
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive xd shadow bg-white rounded">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Nome</td>
+                    <td>Razão Social</td>
+                    <td>Contato</td>
+                    <td>Telefone</td>
+                    <td style="width: 25%">Ações</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(details) { %>
+                    <tr>
+                        <td><%= details.name %></td>
+                        <td><%= details.razao %></td>
+                        <td><%= details.contato %></td>
+                        <td><%= details.telefone %></td>
+                        <td class="md-3">
+                            <a class="btn btn-info" href="/pub/edit/<%= details._id %>">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-danger" href="/pub/delete/<%= details._id %>">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+                </table>
+                </div>
 </div>

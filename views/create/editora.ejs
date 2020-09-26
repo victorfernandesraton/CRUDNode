@@ -1,71 +1,52 @@
 <%- contentFor('body') %>
 <div>
-    <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%; margin-bottom: 1em;">
+    <div
+        class="col-md-6 shadow p-3 bg-white rounded"
+        style="height: 40%; margin-bottom: 1em"
+    >
         <h2>Cadastrar Editora</h2>
         <form action="/editora/" method="POST">
-            <label for="name">CNPJ</label>
+            <label for="cnpj">CNPJ</label>
             <input
                 class="form-control form-control-sm"
                 required
                 type="text"
                 class="form-control"
-                name="name"
-                id="name"
+                name="cnpj"
+                id="cnpj"
                 placeholder="CNPJ"
             />
-            <label for="description">Razão Social</label>
-            <textarea
+            <label for="razao">Razão Social</label>
+            <input
                 class="form-control form-control-sm"
-                name="description"
-                id="description"
-                rows="3"
-                placeholder="Descrição"
-            ></textarea>
-            <label for="autor">Contato</label>
+                name="razao"
+                required
+                type="text"
+                name="razao"
+                id="razao"
+            />
+            <label for="contato">Contato</label>
             <input
                 required
-                type="name"
+                type="text"
                 class="form-control form-control-sm"
-                name="name"
-                id="name"
-                placeholder="Name"
+                name="contato"
+                id="contato"
             />
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="createAt">Telefone</label>
-                    <input
-                        required
-                        type=""
-                        class="form-control form-control-sm col"
-                        name="createAt"
-                        id="createAt"
-                        placeholder="Telefone"
-                    />
-                </div>
-                <div class="col-sm-6">
-                    <label for="type">Tipo</label>
-                    <select 
-                        name="type" id="type" 
-                        class="form-control form-control-sm"
-                    >
-                        <% const options = [ {value: "tcc", label: "TCC"},{value:"article", label: "Artigo"} ]; %>
-                        <% for(const option of options) { %>
-                            <option value="<%= option.value %>"><%= option.label %></option>
-                        <% } %>
-                    </select>
-                </div>
-            </div>
-            <label for="tag">Tags</label>
-            <textarea
+            <label for="telefone">Telefone</label>
+            <input
+                required
+                type="tel"
+                name="telefone"
                 class="form-control form-control-sm"
-                id="tag"
-                rows="3" 
-                name="tag" 
-                placeholder="Tags (use o prdfixo # e um espaçamento)" 
-            ></textarea>
-            <div  class="form-group" style="padding-top: 1rem;">
+                id="telefone"
+                placeholder="Telefone"
+            />
+            <div class="form-group" style="padding-top: 1rem">
                 <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
         </form>
     </div>
 </div>
+
+<script src="/javascript/maskPhone.js"></script>

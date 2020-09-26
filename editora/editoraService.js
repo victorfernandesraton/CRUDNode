@@ -8,7 +8,6 @@ const { Cep, Cnpj, Phone, Cpf } = require("../validation/");
 
 const validate = ({
     razao,
-    nome,
     cnpj,
 }) => {
     if (!cnpj) {
@@ -21,10 +20,6 @@ const validate = ({
 
     if (!razao) {
         return new Error(`razao is required ${razao}`);
-    }
-
-    if (!nome) {
-        return new Error(`razao not valid ${nome}`);
     }
 }
 

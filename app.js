@@ -9,7 +9,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(expressLayiut);
 app.use(express.static(__dirname + '/public'));
-
+app.use('/favicon.ico', express.static('/favicon.webp'));
 app.use("/", routes);
 
 app.get("/", function (req, res) {

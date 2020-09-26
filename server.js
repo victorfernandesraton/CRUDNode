@@ -20,7 +20,7 @@ client.connect(
 );
 
 httpServer.on("listening", () => {
-    console.info(`server us rub in port ${server.port} Press Ctrl + C to exit`);
+    console.info(`Server is run in ${require('os').hostname()} http://${httpServer.address().address}:${httpServer.address().port} Press Ctrl + C to exit`);
 });
 
-httpServer.listen(server.port);
+httpServer.listen(server.port, '127.0.0.1');

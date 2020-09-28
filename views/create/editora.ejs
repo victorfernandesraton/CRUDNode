@@ -1,0 +1,52 @@
+<%- contentFor('body') %>
+<div>
+    <div
+        class="col-md-6 shadow p-3 bg-white rounded"
+        style="height: 40%; margin-bottom: 1em"
+    >
+        <h2>Cadastrar Editora</h2>
+        <form action="/editora/" method="POST">
+            <label for="cnpj">CNPJ</label>
+            <input
+                class="form-control form-control-sm"
+                required
+                type="text"
+                class="form-control"
+                name="cnpj"
+                id="cnpj"
+                placeholder="CNPJ"
+            />
+            <label for="razao">Razão Social</label>
+            <input
+                class="form-control form-control-sm"
+                name="razao"
+                required
+                type="text"
+                name="razao"
+                id="razao"
+            />
+            <label for="contato">Contato</label>
+            <input
+                required
+                type="text"
+                class="form-control form-control-sm"
+                name="contato"
+                id="contato"
+            />
+            <label for="telefone">Telefone</label>
+            <input
+                required
+                type="tel"
+                name="telefone"
+                class="form-control form-control-sm"
+                id="telefone"
+                placeholder="Telefone"
+            />
+            <div class="form-group" style="padding-top: 1rem">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/javascript/maskPhone.js"></script>

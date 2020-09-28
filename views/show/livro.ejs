@@ -2,39 +2,75 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>My CRUD in NodeJS</title>
+        <title>Blibioteca universitária - Livros</title>
     </head>
     <body>
         <h2>Livros</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Titulo</td>
-                    <td>Descricao</td>
-                    <td>Editora</td>
-                    <td>Data</td>
-                    <td>Assunto</td>
-                    <td>Ações</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% data.forEach(function(details) { %>
-                <tr>
-                    <td><%= details._id %></td>
-                    <td><%= details.titulo %></td>
-                    <td><%= details.descricao %></td>
-                    <td><%= details.editora %></td>
-                    <td><%= details.data %></td>
-                    <td><%= details.assunto %></td>
-                    <td>
-                        <a href="/livro/edit/<%= details._id %>">Editar</a> -
-                        <a href="/livro/delete/<%= details._id %>">Deletar</a>
-                    </td>
-                </tr>
-                <% }) %>
-            </tbody>
-        </table>
-        <button><a href="/livro/create">Novo</a></button>
+
+        <div>
+            <div class="shadow bg-white rounded mb-2" style="padding: 1em; display: flex; justify-content: center; vertical-align: middle;">
+                <form method="GET" class="form-inline" action="/livro">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="q">Buscar por</label>
+                        <input name="q" class="form-control my-0 py-1 red-border" type="text" placeholder="Search"
+                            aria-label="Search" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="f">Filtrar por</label>
+                        <select name="f" class="form-control">
+                            <option selected value="titulo">Titulo</option>
+                            <option value="description">Descrição</option>
+                            <option value="editora">Editora</option>
+                            <option value="data">Autor</option>
+                            <option value="assunto">Assunto</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3">
+                        <button class="btn btn btn-primary mx-sm-3 mb-2" type="submit">
+                            <i class="fas fa-search" aria-hidden="true"></i> Pesquisar
+                        </button>
+                        <a value="Novo" href="/livro/create" class="btn btn-primary mb-2" href="/livro/create">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Novo
+                        </a>
+                    </div>
+                </form>
+            </div>
+        
+        <div class="table-responsive xd shadow bg-white rounded">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <td>ID</td>
+                        <td>Titulo</td>
+                        <td style="width: 16.66%">Descricao</td>
+                        <td>Editora</td>
+                        <td>Data</td>
+                        <td>Assunto</td>
+                        <td style="width: 25%">Ações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(details) { %>
+                    <tr>
+                        <td><%= details._id %></td>
+                        <td><%= details.titulo %></td>
+                        <td><%= details.descricao %></td>
+                        <td><%= details.editora %></td>
+                        <td><%= details.data %></td>
+                        <td><%= details.assunto %></td>
+                        <td class="md-3">
+                            <a class="btn btn-info" href="/livro/edit/<%= details._id %>">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a> -
+                            <a class="btn btn-danger"  href="/livro/delete/<%= details._id %>">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        
     </body>
 </html>

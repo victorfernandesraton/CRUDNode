@@ -2,19 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My CRUD in NodeJS</title>
+  <title>Blibioteca universitária - Cadastro Livro</title>
 </head>
 <body>
 
-    <h2>Registrar Livro<h2>
-    <form action="/livro" method="POST">
-        <input type="text" placeholder="Titulo" name="titulo">
-        <input type="text" placeholder="Descrição" name="descricao">
-        <input type="text" placeholder="Editora" name="editora">
-        <input type="date" name="data">
-        <input type="text" placeholder="Assunto" name="assunto">
-        <button type="submit">Salvar</button>
-    </form> 
+    <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%; margin-bottom: 1em;">
+      <h2>Cadastrar Livro<h2>
+        <form action="/livro" method="POST">
+          <label for="titulo" style="font-size: 1rem">Titulo</label> 
+          <input 
+            class="form-control form-control-sm" 
+            type="text" placeholder="Titulo" 
+            name="titulo"
+            >
+            <label for="descricao" style="font-size: 1rem">Descrição</label>
+            <input 
+            class="form-control form-control-sm" 
+            type="text" placeholder="Descrição" 
+            name="descricao"
+            >
+            <label for="editora" style="font-size: 1rem">Editora</label>
+            <input 
+            class="form-control form-control-sm" 
+            type="text" placeholder="Editora" 
+            name="editora"
+            >
+            <label for="data" style="font-size: 1rem">Data</label>
+            <input 
+            class="form-control form-control-sm" 
+            type="date" 
+            name="data"
+            >
+            <label for="assunto" style="font-size: 1rem">Assunto</label>
+            <input 
+            class="form-control form-control-sm" 
+            type="text" 
+            placeholder="Assunto" 
+            name="assunto">
+
+            <br>
+
+            <button 
+            class="btn btn-primary" 
+            type="submit">Salvar
+          </button>
+        </form> 
+    </div>
 
 </body>
 </html>

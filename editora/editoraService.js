@@ -4,33 +4,22 @@ const mongodb = require("mongodb");
 const validator = require("validator");
 const { isDate, isAfter } = require("date-fns");
 
-const { Cep, Cnpj, Razao, Phone, Cpf } = require("../validation/");
+const { Cep, Cnpj, Phone, Cpf } = require("../validation/");
 
 const validate = ({
-    mail,
     razao,
-    nome,
     cnpj,
-    phone,
 }) => {
-    if (!cpnj) {
+    if (!cnpj) {
         return new Error(`cnpj is required`);
     }
 
-    if (!Cnpj(cnpj)) {
+    if (!Cnpj(`${cnpj}`)) {
         return new Error(`cnpj not valid ${cnpj}`);
     } 
 
     if (!razao) {
         return new Error(`razao is required ${razao}`);
-    }
-
-    if (!razao) {
-        return new Error(`razao not valid ${razao}`);
-    }
-
-    if (!nome) {
-        return new Error(`razao not valid ${nome}`);
     }
 }
 
@@ -67,7 +56,7 @@ const store =  async ({ editora = null}) => {
     try {
         const client = await conection();
         try {
-            const cllection = client.db("api").collection("editora");
+            const collection = client.db("api").collection("editora");
             const record = await collection.insertOne({ ...editora });
             const data = await index({});
             return data;

@@ -2,23 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My CRUD in NodeJS</title>
+  <title>Blibioteca universitária - Livros/Editar</title>
 </head>
 <body>
 
-    <h2>Registrar Livro<h2>
-        <% data.forEach(function(details) { %>
-    <form action="/livro/<%= details._id %>" method="POST">
-        
-        <input type="text" value="<%= details.titulo %>" name="titulo">
-        <input type="text" value="<%= details.descricao %>" name="descricao">
-        <input type="text" value="<%= details.editora %>" name="editora">
-        <input type="date" value="<%= details.data %>" name="data">
-        <input type="text" value="<%= details.assunto %>" name="assunto">
-        <br />
-        <button><a href="/livro">Todos</a></button>
-        <button type="submit">Editar</button>
-    </form> 
-    <% }) %>
+    <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%; margin-bottom: 1em;">
+        <h2>Editar Livro<h2>
+            <% data.forEach(function(details) { %>
+        <form action="/livro/<%= details._id %>" method="POST">
+            <label for="titulo" style="font-size: 1rem">Titulo</label>
+            <input 
+                class="form-control form-control-sm"
+                type="text" 
+                value="<%= details.titulo %>" 
+                name="titulo"
+            >
+            <label for="descricao" style="font-size: 1rem">Descrição</label>
+            <input 
+                class="form-control form-control-sm"
+                type="text" 
+                value="<%= details.descricao %>" 
+                name="descricao"
+            >
+            <label for="editora" style="font-size: 1rem">Editora</label>
+            <input
+                class="form-control form-control-sm" 
+                type="text" 
+                value="<%= details.editora %>" 
+                name="editora"
+            >
+            <label for="data" style="font-size: 1rem">Data</label>
+            <input 
+                class="form-control form-control-sm"
+                type="date" 
+                value="<%= details.data %>" 
+                name="data"
+            >
+            <label for="assunto" style="font-size: 1rem">Assunto</label>
+            <input 
+                class="form-control form-control-sm"
+                type="text" 
+                value="<%= details.assunto %>" 
+                name="assunto"
+            >
+            <br />
+            <button class="btn btn-danger"><a style="color: white;" href="/livro">Cancelar</a></button>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+        </form> 
+        <% }) %>
+    </div>
 </body>
 </html>

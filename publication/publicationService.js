@@ -68,7 +68,7 @@ const store = async ({ publication = null }) => {
     if (publication.status === null || publication.status === undefined) {
         publication.status = false
     }
-    if (publication.status === 'one') {
+    if (publication.status === 'on') {
         publication.status = true
     }
 

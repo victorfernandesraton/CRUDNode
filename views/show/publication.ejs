@@ -47,8 +47,9 @@
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
+                    <td>ISBN</td>
                     <td>Nome</td>
-                    <td style="width: 16.66%">Descrição</td>
+                    <td>Status</td>
                     <td>Tipo</td>
                     <td>Autor</td>
                     <td>Data de criação</td>
@@ -59,8 +60,9 @@
             <tbody>
                 <% data.forEach(function(details) { %>
                 <tr>
+                    <td><%= details.isbn%></td>
                     <td><%= details.name %></td>
-                    <td><%= details.description %></td>
+                    <td><%= details.status ? "Ativo" : "Inativo" %></td>
                     <% const typeOptions = [ {value: "tcc", label: "TCC"},
                     {value:"article", label: "Artigo"} ].find(el => el.value ==
                     details.type) %>

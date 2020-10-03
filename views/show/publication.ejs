@@ -32,7 +32,7 @@
     <% const {limit =10, total = 0} = metadata; %>
     <% const currentPage = metadata.offset == 0 ? 1 : metadata.offset/limit + 1;  %>
     <% const totalPage = total >= limit ? Math.ceil(total/limit) : 1 %> 
-    <% const pageUrl = metadata.url.split('/')[1].slice(1).replace(/(&?)+(p=\b)+(\d*)/g, '') %> 
+    <% const pageUrl = metadata.url ? metadata.url.split('/')[1].slice(1).replace(/(&?)+(p=\b)+(\d*)/g, '') : '' %> 
     <div style="margin-top: 2em;">
         <nav aria-label="Page navigation example">
             <ul class="pagination pagination-sm">

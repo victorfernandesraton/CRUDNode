@@ -1,8 +1,11 @@
 <%- contentFor('body') %>
 <div>
-    <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%; margin-bottom: 1em;">
+    <div
+        class="col-md-6 shadow p-3 bg-white rounded"
+        style="height: 40%; margin-bottom: 1em"
+    >
         <h2>Cadastrar publicação</h2>
-        <form action="/pub/" method="POST">
+        <form id="form" action="/pub/" method="POST">
             <label for="name">Nome</label>
             <input
                 class="form-control form-control-sm"
@@ -21,6 +24,28 @@
                 rows="3"
                 placeholder="Descrição"
             ></textarea>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="isbn">ISBN</label>
+                    <input
+                        class="form-control form-control-sm"
+                        required
+                        type="text"
+                        class="form-control"
+                        name="isbn"
+                        id="isbn"
+                        placeholder="ISBN-10 ou ISBN-13"
+                    />
+                    <input type="hidden" name="isbn-error" id="isbn-error">
+                </div>
+                <div class="col sm-6">
+                    <label for="status">Status</label>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" checked id="status" name="status">
+                        <label class="custom-control-label" for="status"></label>
+                    </div>
+                </div>
+            </div>
             <label for="autor">Autor</label>
             <input
                 required
@@ -44,13 +69,17 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="type">Tipo</label>
-                    <select 
-                        name="type" id="type" 
+                    <select
+                        name="type"
+                        id="type"
                         class="form-control form-control-sm"
                     >
-                        <% const options = [ {value: "tcc", label: "TCC"},{value:"article", label: "Artigo"} ]; %>
-                        <% for(const option of options) { %>
-                            <option value="<%= option.value %>"><%= option.label %></option>
+                        <% const options = [ {value: "tcc", label:
+                        "TCC"},{value:"article", label: "Artigo"} ]; %> <%
+                        for(const option of options) { %>
+                        <option value="<%= option.value %>">
+                            <%= option.label %>
+                        </option>
                         <% } %>
                     </select>
                 </div>
@@ -59,13 +88,15 @@
             <textarea
                 class="form-control form-control-sm"
                 id="tag"
-                rows="3" 
-                name="tag" 
-                placeholder="Tags (use o prdfixo # e um espaçamento)" 
+                rows="3"
+                name="tag"
+                placeholder="Tags (use o prdfixo # e um espaçamento)"
             ></textarea>
-            <div  class="form-group" style="padding-top: 1rem;">
+            <div class="form-group" style="padding-top: 1rem">
                 <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
         </form>
     </div>
 </div>
+
+<script src="/javascript/isbnValidation.js"></script> 

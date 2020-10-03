@@ -2,13 +2,13 @@ const conection = require("../database/mongodb.config");
 const mongodb = require("mongodb");
 
 const { isDate, isAfter } = require("date-fns");
-const { Name } = require("../validation");
+const { Name, Isbn } = require("../validation");
 
-const validate = ({ name, description, autor, tag, createAt, type }) => {
+const validate = ({ name, status, isbn, description, autor, tag, createAt, type }) => {
     if (!name) return new Error("name is required");
     if (!autor) return new Error("autor is required");
     if (!type) return new Error("type is required");
-
+    if (!isbn) return new Error('ISBN-10 or  ISBN-13 is required');
     if (createAt) {
         if (
             !isDate(new Date(createAt)) ||
@@ -17,6 +17,8 @@ const validate = ({ name, description, autor, tag, createAt, type }) => {
             return new Error(`createAt is not valid ${createAt}`);
         }
     }
+
+    if (status && typeof status !== 'boolean') return new Error(`status is not valid ${status}`);
 
     if (!Name(type)) return new Error(`type is not valid ${type}`);
 
@@ -27,6 +29,7 @@ const validate = ({ name, description, autor, tag, createAt, type }) => {
             }
         }
     }
+    if (!Isbn(isbn)) return new Error(`ISBN is invalid ${isbn}`);
 };
 
 const index = async ({ limit = 10, offset = 0, filter = {} }) => {
@@ -62,7 +65,15 @@ const store = async ({ publication = null }) => {
         throw new Error("publication is required");
     }
 
+    if (publication.status === null || publication.status === undefined) {
+        publication.status = false
+    }
+    if (publication.status === 'one') {
+        publication.status = true
+    }
+
     const isNotValid = validate(publication);
+
 
     if (isNotValid) {
         throw new Error(isNotValid);
@@ -115,8 +126,15 @@ const updateOne = async ({ id, publication }) => {
     }
     let findRecord;
 
+    if (publication.status === null || publication.status === undefined) {
+        publication.status = false
+    }
+    if (publication.status === 'on') {
+        publication.status = true
+    }
+
     try {
-        findRecord = await findOne({ id });
+        findRecord = await (await findOne({ id })).data;
     } catch (error) {
         throw new Error(error);
     }

@@ -2,7 +2,7 @@
 <div class="col-md-6 shadow p-3 bg-white rounded" style="height: 40%; margin-bottom: 1em;">
     <h2>Editar publicação</h2>
     <% data.forEach(function(details) { %>
-    <form action="/pub/<%= details._id %>" method="POST">
+    <form id="form" action="/pub/<%= details._id %>" method="POST">
         <label for="name">Nome</label>
         <input
             class="form-control form-control-sm"
@@ -22,6 +22,29 @@
             rows="3"
             placeholder="Descrição"
         ><%= details.description.trim() %></textarea>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="isbn">ISBN</label>
+                <input
+                    class="form-control form-control-sm"
+                    required
+                    type="text"
+                    class="form-control"
+                    name="isbn"
+                    id="isbn"
+                    value="<%= details.isbn %>"
+                    placeholder="ISBN-10 ou ISBN-13"
+                />
+                <input type="hidden" name="isbn-error" id="isbn-error">
+            </div>
+            <div class="col sm-6">
+                <label for="status">Status</label>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" <%= details.status == true ? "checked" : null%> id="status" name="status">
+                    <label class="custom-control-label" for="status"></label>
+                </div>
+            </div>
+        </div>
         <label for="autor">Autor</label>
         <input
             required
@@ -80,4 +103,6 @@
     </form>
     <% }) %>
 </div>
+
+<script src="/javascript/isbnValidation.js"></script> 
 

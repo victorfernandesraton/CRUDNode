@@ -31,19 +31,15 @@ const validateIsbn = (payload) => {
     return false;
 };
 // Mensagen de erro para isbn code
-const errorMesssage = document.getElementById("isbn-error");
-errorMesssage.addEventListener("change", (e) => {
-    errorMesssage.hidden = errorMesssage?.outerHTML?.length > 0;
-});
+let errorMesssage = document.getElementById("isbn-error");
 
 document.getElementById("isbn").addEventListener("keyup", (e) => {
-    console.log(validateIsbn(e.target.value));
     if (!validateIsbn(e.target.value)) {
-        errorMesssage.value = "Código inválid";
-        console.log(false);
+        errorMesssage.style.display = 'block'
+        errorMesssage.innerHTML = "Código inválido";
     } else {
-        errorMesssage.value = "";
-        console.log(true);
+        errorMesssage.style.display = 'none'
+        errorMesssage.innerHTML = "";
     }
 });
 

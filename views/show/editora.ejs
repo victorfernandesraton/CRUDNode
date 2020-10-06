@@ -32,9 +32,9 @@
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <td>Nome</td>
                     <td>Razão Social</td>
                     <td>Contato</td>
+                    <td>Endereço</td>
                     <td>Telefone</td>
                     <td style="width: 16.66%">Descricao</td>
                     <td style="width: 16.66%">Endereço</td>
@@ -44,10 +44,10 @@
             <tbody>
                 <% data.forEach(function(details) { %>
                     <tr>
-                        <td><%= details.name %></td>
                         <td><%= details.razao %></td>
                         <td><%= details.contato %></td>
                         <td><%= details.telefone %></td>
+                        <td><%= details.endereco %></td>
                         <td><%= details.descricao %></td>
                         <td><%= details.endereco %></td>
                         <td class="md-3">

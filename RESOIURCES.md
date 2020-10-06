@@ -7,21 +7,14 @@
 - editora
 - ano de publicação
 - assunto (tag)
-### usuário
-- nome
-- sobrenome
-- cpf
-- data de nasc
-- cep
-- telefone
-- email
 ### editora
 - nome
+- razao social
 - nome responsavel
 - cnpj
-- dat de fund
-- email
 - telefone de contato
+- endereçp
+- descriçãp
 ### publicações
 - nome
 - descrição

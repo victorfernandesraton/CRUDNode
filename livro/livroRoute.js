@@ -75,16 +75,13 @@ router.post("/:id", async (req, res, send) => {
 });
 
 router.post("/", async (req, res, send) => {
-    console.log(req.body)
     try {
         const record = await LivroService.store({ livro: { ...req.body } });
         const data = await LivroService.index({});
         res.render("show/livro", { data });
     } 
     catch (error) {
-        console.log(error)
         send(error);
-        
     }
 });
 

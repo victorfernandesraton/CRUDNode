@@ -23,7 +23,7 @@ router.get("/delete/:id", async (req, res, send) => {
     }
     try {
         const data = await EditoraService.deleteOne({ id });
-        res.redirect("/user");
+        res.redirect("/editora");
     } catch (error) {
         if (error.message.includes("user not found")) {
             res.status(404).json({
@@ -66,9 +66,9 @@ router.post("/:id", async (req, res, send) => {
     try {
         const record = await EditoraService.updateOne({
             id,
-            user: { ...req.body },
+            editora: { ...req.body },
         });
-        res.redirect(`/user?u=${id}`);
+        res.redirect(`/editora?u=${id}`);
     } catch (error) {
         send(error);
     }

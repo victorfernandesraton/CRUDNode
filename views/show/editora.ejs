@@ -36,6 +36,8 @@
                     <td>Razão Social</td>
                     <td>Contato</td>
                     <td>Telefone</td>
+                    <td style="width: 16.66%">Descricao</td>
+                    <td style="width: 16.66%">Endereço</td>
                     <td style="width: 25%">Ações</td>
                 </tr>
             </thead>
@@ -46,6 +48,8 @@
                         <td><%= details.razao %></td>
                         <td><%= details.contato %></td>
                         <td><%= details.telefone %></td>
+                        <td><%= details.descricao %></td>
+                        <td><%= details.endereco %></td>
                         <td class="md-3">
                             <a class="btn btn-info" href="/pub/edit/<%= details._id %>">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
